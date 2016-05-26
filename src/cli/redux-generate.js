@@ -12,7 +12,7 @@ commander.on('--help', () => {
 commander
   .version(version())
   .arguments('<blueprint> [entity name]')
-  .option('-p, --path <path>', 'Join path to the root path')
+  .option('-p, --path <path>', 'Add path to the base path')
   .option('-v, --verbose', 'Turn debug mode on')
   .description('generates code based off a blueprint')
   .action((blueprintName, entityName, command) => {
