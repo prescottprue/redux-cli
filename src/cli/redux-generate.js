@@ -12,10 +12,12 @@ commander.on('--help', () => {
 commander
   .version(version())
   .arguments('<blueprint> [entity name]')
+  .option('-p, --path <path>', 'Join path to the root path')
   .option('-v, --verbose', 'Turn debug mode on')
   .description('generates code based off a blueprint')
   .action((blueprintName, entityName, command) => {
     const debug = command.verbose;
+    const path = command.path;
     const rawArgs = command.rawArgs;
     const options = minimist(rawArgs.slice(2));
 
@@ -25,7 +27,8 @@ commander
         options,
         rawArgs
       },
-      debug
+      debug,
+      path
     };
     subCommand.run(blueprintName, cliArgs);
 
