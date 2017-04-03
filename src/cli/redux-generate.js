@@ -14,10 +14,12 @@ commander
   .arguments('<blueprint> [entity name]')
   .option('-p, --path <path>', 'Add path to the base path')
   .option('-v, --verbose', 'Turn debug mode on')
+  .option('-d, --dry-run', 'Do not generate files and show what files will be created')
   .description('generates code based off a blueprint')
   .action((blueprintName, entityName, command) => {
     const debug = command.verbose;
     const path = command.path;
+    const dryRun = command.dryRun;
     const rawArgs = command.rawArgs;
     const options = minimist(rawArgs.slice(2));
 
@@ -29,6 +31,7 @@ commander
       },
       debug,
       path
+      dryRun
     };
     subCommand.run(blueprintName, cliArgs);
 

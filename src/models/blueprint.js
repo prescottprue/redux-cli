@@ -230,7 +230,7 @@ export default class Blueprint {
     this.ui.writeDebug(`built file infos: ${fileInfos.length}`);
     const filesToWrite = fileInfos.filter(info => info.isFile());
     this.ui.writeDebug(`files to write: ${filesToWrite.length}`);
-    filesToWrite.map(file => file.writeFile());
+    filesToWrite.map(file => file.writeFile(this.dryRun));
   }
 
   buildFileInfo(locals, file) {
@@ -271,6 +271,7 @@ export default class Blueprint {
   */
   install(options) {
     const ui = this.ui = options.ui;
+    this.dryRun = options.dryRun;
 
     ui.writeInfo('installing blueprint...');
     return this._process(
