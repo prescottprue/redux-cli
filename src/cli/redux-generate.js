@@ -30,7 +30,7 @@ commander
         rawArgs
       },
       debug,
-      path
+      path,
       dryRun
     };
     subCommand.run(blueprintName, cliArgs);
