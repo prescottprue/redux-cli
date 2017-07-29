@@ -24,7 +24,9 @@ export default class extends Task {
       name: cliArgs.entity.name,
       options: cliArgs.entity.options
     };
-
+    if (cliArgs.path) {
+      this.settings.setSetting('pathSuffix', cliArgs.path);
+    }
     const blueprintOptions = {
       originalBlueprintName: blueprintName,
       ui: this.ui,

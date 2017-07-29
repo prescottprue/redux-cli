@@ -143,10 +143,20 @@ export default class Blueprint {
         return options.originalBlueprintName;
       },
       __root__: (options) => {
-        return options.settings.getSetting('sourceBase');
+        const sourceBase = options.settings.getSetting('sourceBase');
+        const pathSuffix = options.settings.getSetting('pathSuffix');
+        if (pathSuffix) {
+          return path.join(sourceBase, pathSuffix);
+        }
+        return sourceBase;
       },
       __test__: (options) => {
-        return options.settings.getSetting('testBase');
+        const testBase = options.settings.getSetting('testBase');
+        const pathSuffix = options.settings.getSetting('pathSuffix');
+        if (pathSuffix) {
+          return path.join(testBase, pathSuffix);
+        }
+        return testBase;
       }
     };
 
